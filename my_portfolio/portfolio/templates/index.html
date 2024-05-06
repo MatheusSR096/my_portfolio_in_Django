@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>My Portfolio</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #02101b;
+            color: #eeeeee;
+        }
+        .container {
+            width: 70%;
+            margin: auto;
+            overflow: visible;
+        }
+        h1, h2 {
+            color: #ffffff;
+        }
+        .section {
+            margin-bottom: 0px;
+        }
+        .section h1 {
+            margin-bottom: 20px;
+        }
+        .intro, .project, .link, .resume, .contact {
+            background-color: #2b2b31fd;
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 0 10px rgb(148, 54, 202);
+            margin-bottom: 50px;
+            cursor: pointer;
+        }
+        .link a, .project a {
+            color: rgb(76, 164, 214); 
+            text-decoration: none; 
+        }
+        .link a:hover, .project a:hover {
+            color: #4682b4; 
+        }
+        .details {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .project.open .details {
+            max-height: 1000px; 
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Welcome to My Portfolio 💻</h1>
+        {% for intro in intros %}
+            <div class="intro">
+                <h3>{{ intro.title }}</h3>
+                <p>{{ intro.description }}</p>
+            </div>
+        {% endfor %}
+
+        <div class="section">
+            <h2>My Resume 📄</h2>
+            {% for resume in resumes %}
+            <div class="resume">
+                <h3>Professional Experience</h3>
+                <p>{{ resume.prof_exp }}</p>
+        
+                <h3>Education</h3>
+                <p>{{ resume.education }}</p>
+        
+                <h3>Skills</h3>
+                <p>{{ resume.skills }}</p>
+        
+                <h3>Certifications</h3>
+                <p>{{ resume.certifications }}</p>
+            </div>
+            {% endfor %}
+        
+        <div class="section">
+            <h2>My Projects 📈</h2>
+            {% for project in projects %}
+                <div class="project" onclick="this.classList.toggle('open')">
+                    <h3>{{ project.title }}</h3>
+                    <div class="details">
+                        <p>{{ project.description }}</p>
+                        <p><a href="{{ project.link }}">{{ project.link }}</a></p>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+
+        <div class="section">
+            <h2>Links 🔗</h2>
+            {% for link in links %}
+                <div class="link">
+                    <h3>{{ link.title }}</h3>
+                    <p><a href="{{ link.link }}">{{ link.link }}</a></p>
+                </div>
+            {% endfor %}
+
+        <div class="section">
+            <h2>Contact ✉️</h2>
+            {% for contact in contacts %}
+                <div class="contact">
+                    <h3>Name</h3>
+                    <p>{{ contact.name }}</p>
+            
+                    <h3>E-mail</h3>
+                    <p>{{ contact.email }}</p>
+            
+                    <h3>Phone</h3>
+                    <p>{{ contact.phone }}</p>                    
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+</body>
+</html>
